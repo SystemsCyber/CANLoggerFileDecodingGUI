@@ -83,8 +83,8 @@ class CANDecoderMainWindow(QMainWindow):
             self.j1939db = json.load(j1939_file)
 
         #load an example file
-        self.data_file_name = "example.bin"
-        self.load_binary()
+        #self.data_file_name = "example.bin"
+        #self.load_binary()
         
         
               
@@ -331,7 +331,7 @@ class CANDecoderMainWindow(QMainWindow):
                         
                         message_list.append([channel,real_time,rel_time,delta_time,ID,PGN,DA,SA,DLC] + [b for b in message_bytes] + [message_bytes])
 
-                else:
+                elif block[0:4] == b'\x15\x00\x00\x00':
                     channel = 0
                     for recordNum in range(21):
                         record = block[4+recordNum*24:4+(recordNum+1)*24]
