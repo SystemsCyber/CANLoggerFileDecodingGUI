@@ -307,7 +307,7 @@ class CANDecoderMainWindow(QMainWindow):
                 loading_progress.setValue(fileLocation)
                 if loading_progress.wasCanceled():
                     break
-                if block[0:4] == b'CAN2':
+                if block[0:3] == b'CAN': #CAN logger 2 and 3
                     for recordNum in range(19):
                         record = block[4+recordNum*25:4+(recordNum+1)*25]
                         channel = record[0]
